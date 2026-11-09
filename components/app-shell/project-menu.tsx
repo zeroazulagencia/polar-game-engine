@@ -7,7 +7,6 @@ import {
   ChevronsUpDown,
   Download,
   FolderOpen,
-  Globe,
   Image,
   LayoutGrid,
   Pencil,
@@ -33,6 +32,7 @@ import {
 import { useGameStore } from "@/lib/game-store"
 import { exportAssetsJson, exportProjectJson } from "@/lib/project-files"
 import { cn } from "@/lib/utils"
+import { ExportGameSubmenu } from "./export-game-menu"
 import { useProjectActions } from "./project-actions"
 
 /** Project switcher + project/data actions, shown at the top of the sidebar. */
@@ -128,12 +128,7 @@ export function ProjectMenu({ collapsed }: { collapsed: boolean }) {
 
             <DropdownMenuSeparator />
             <DropdownMenuLabel className="text-xs text-muted-foreground">Datos</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => actions.exportGame(project)}
-              disabled={actions.busy.exportingGame || project.scenes.length === 0}
-            >
-              <Globe className="size-4" /> {actions.busy.exportingGame ? "Exportando juego…" : "Exportar juego (HTML)"}
-            </DropdownMenuItem>
+            <ExportGameSubmenu project={project} />
             <DropdownMenuItem onClick={() => exportProjectJson(project)}>
               <Download className="size-4" /> Exportar proyecto
             </DropdownMenuItem>

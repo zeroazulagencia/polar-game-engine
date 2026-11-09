@@ -1,6 +1,6 @@
 # Polar Game Engine
 
-Un motor y editor para hacer aventuras gráficas de apuntar y hacer clic (*point & click*) al estilo de Monkey Island, Day of the Tentacle o Broken Sword, sin escribir código. Lo diseñas todo en el navegador y lo exportas como un solo archivo HTML que se juega en cualquier lado.
+Un motor y editor para hacer aventuras gráficas de apuntar y hacer clic (*point & click*) al estilo de Monkey Island, Day of the Tentacle o Broken Sword, sin escribir código. Lo diseñas todo en el navegador y lo exportas como página web, app de escritorio (Windows, Mac, Linux) o app de Android.
 
 *A no-code point & click adventure game engine and editor. The interface is in Spanish.*
 
@@ -16,7 +16,7 @@ Un motor y editor para hacer aventuras gráficas de apuntar y hacer clic (*point
 - **Título, cinemáticas y créditos.** Pantalla de título con «Nueva partida» y «Continuar», diapositivas sobre negro (imagen con texto o video) para la intro, los finales y los momentos especiales, y créditos al final.
 - **Música y sonido.** Música por escena, ambiente y efectos.
 - **Verificar el juego.** Recorre todas las partidas posibles y avisa si hay finales a los que no se puede llegar o callejones sin salida.
-- **Jugar y exportar.** Prueba el juego dentro del editor, con partida guardada, y expórtalo como un HTML independiente.
+- **Jugar y exportar.** Prueba el juego dentro del editor, con partida guardada, y expórtalo como página web (un solo HTML), app de Windows, Mac o Linux, o app de Android.
 - **Generar con IA (opcional).** Fondos, objetos y personajes con la API de OpenAI, si pones tu propia llave.
 
 ## Empezar
@@ -42,7 +42,34 @@ Para pasarle un proyecto a otra persona: menú del proyecto → **Exportar proye
 
 ## Publicar tu juego
 
-En el editor: menú del proyecto → **Exportar juego (HTML)**. Descarga un único archivo `.html` con todo adentro (arte, sonido y el reproductor). Súbelo a cualquier hosting estático (GitHub Pages, Netlify, tu servidor) o compártelo tal cual. El juego exportado no necesita ningún servidor ni llave.
+En el editor: menú del proyecto → **Exportar juego**, y eliges dónde se va a jugar.
+
+| Opción | Qué obtienes | Notas |
+| --- | --- | --- |
+| **Página web (HTML)** | Un único `.html` con todo adentro (arte, sonido y el reproductor) | Súbelo a cualquier hosting estático (GitHub Pages, Netlify, tu servidor) o compártelo tal cual |
+| **Windows (.exe)** | `dist/<juego>-windows.zip`: una carpeta con el `.exe` | Se puede armar desde Mac, sin Windows |
+| **Mac (.app)** | `dist/<juego>-mac.zip`: la app, para Mac con Apple Silicon e Intel | Ármala desde un Mac |
+| **Linux** | `dist/<juego>-linux.zip`: una carpeta con el ejecutable | |
+| **Android** | `dist/<juego>-android-debug.apk`, o un proyecto de Android Studio | El APK sale solo si tienes [Android Studio](https://developer.android.com/studio) instalado; si no, queda el proyecto listo en `dist/<juego>-android/android` para abrirlo con él |
+
+Las versiones de escritorio usan [Electron](https://www.electronjs.org) y la de Android, [Capacitor](https://capacitorjs.com): el juego es el mismo HTML dentro de una ventana propia, con la partida guardada en el equipo del jugador. La primera vez que exportas para cada sistema se descarga lo necesario (unos 100 MB por sistema) y tarda unos minutos; después es rápido. Cada versión de escritorio pesa entre 100 y 250 MB porque lleva su propio navegador adentro. En la ventana del juego, F11 o Alt+Enter cambian a pantalla completa.
+
+**Firmas.** Lo que sale del motor no está firmado: sirve para probar y para compartir, pero el sistema avisa la primera vez.
+
+- En **Mac**: clic derecho sobre la app → **Abrir** → **Abrir**. Para distribuirla sin aviso hace falta una cuenta de [Apple Developer](https://developer.apple.com/programs/) y firmar y notarizar la app.
+- En **Windows**: en el aviso de SmartScreen, **Más información** → **Ejecutar de todas formas**. Para quitar el aviso hace falta un certificado de firma de código.
+- En **Android**: el APK de prueba se instala activando «Instalar apps desconocidas». Para Google Play hay que generar un paquete firmado desde Android Studio (Build → Generate Signed App Bundle).
+
+iPhone y iPad todavía no: necesitan Xcode y una cuenta de Apple Developer.
+
+También se puede empaquetar desde la terminal, con un HTML ya exportado:
+
+```bash
+npm run package -- mi-juego.html --target windows   # o mac, linux, android, all
+npm run package -- mi-juego.html --target android --name "Mi juego" --id com.miestudio.mijuego
+```
+
+`--id` es el identificador de la app (el de Google Play o de Apple); si no lo pones, se arma uno a partir del nombre.
 
 ## Generar arte con IA (opcional)
 
@@ -56,7 +83,7 @@ La llave se queda en tu computador: el navegador nunca la ve, porque las llamada
 
 ## Seguridad: es una herramienta local
 
-El editor está pensado para correr en tu propia máquina con `npm run dev`. Sus rutas internas (`/api/storage` escribe en `data/`, `/api/openai` usa tu llave) **no tienen usuarios ni contraseñas**. No publiques el editor en internet tal cual: cualquiera podría modificar tus proyectos o gastar tu crédito de OpenAI. Lo que se publica es el juego exportado, que es solo un HTML.
+El editor está pensado para correr en tu propia máquina con `npm run dev`. Sus rutas internas (`/api/storage` escribe en `data/`, `/api/openai` usa tu llave, `/api/package` arma apps en `dist/`) **no tienen usuarios ni contraseñas**. No publiques el editor en internet tal cual: cualquiera podría modificar tus proyectos o gastar tu crédito de OpenAI. Lo que se publica es el juego exportado, que es solo un HTML.
 
 ## Paquetes de contenido
 
@@ -70,9 +97,10 @@ Además de editar a mano, puedes generar contenido con scripts y cargarlo desde 
 | `components/` | Interfaz del editor; `components/editor/play-mode.tsx` es el motor del juego |
 | `lib/` | Tipos del proyecto, guardado en disco, exportación, verificador del juego, audio |
 | `player/` | Punto de entrada del reproductor que va dentro del HTML exportado |
+| `scripts/package-game.mjs` | Empaqueta el HTML exportado para Windows, Mac, Linux y Android |
 | `data/projects/` | Tus proyectos (y la demo) |
 
-Comandos: `npm run dev` (editor en el puerto 4600) y `npm run build` (compilación de producción).
+Comandos: `npm run dev` (editor en el puerto 4600), `npm run build` (compilación de producción) y `npm run package` (empaquetar un juego exportado, ver arriba).
 
 ## Licencia
 

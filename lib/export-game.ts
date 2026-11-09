@@ -109,3 +109,26 @@ export async function downloadStandaloneGame(project: GameProject, filenameBase:
   setTimeout(() => URL.revokeObjectURL(url), 1000)
   return bytes
 }
+
+export type PackageTarget = "windows" | "mac" | "linux" | "android"
+
+/**
+ * The game as an app: the same HTML, packaged on this machine by the editor's server
+ * (app/api/package → scripts/package-game.mjs). Returns the files it made, relative to the repo.
+ */
+export async function packageGame(project: GameProject, target: PackageTarget) {
+  const { html } = await buildStandaloneHtml(project)
+  let res: Response
+  try {
+    res = await fetch("/api/package", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ target, name: project.name, html }),
+    })
+  } catch {
+    throw new Error("No se pudo conectar con el servidor del editor. ¿Está corriendo `npm run dev`?")
+  }
+  const body = (await res.json()) as { files?: string[]; androidProjectOnly?: boolean; error?: string }
+  if (!res.ok) throw new Error(body.error ?? `${res.status} ${res.statusText}`)
+  return { files: body.files ?? [], androidProjectOnly: !!body.androidProjectOnly }
+}

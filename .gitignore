@@ -26,3 +26,6 @@ data/.trash/
 
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
+
+# Packaged games (npm run package / Exportar juego)
+dist/

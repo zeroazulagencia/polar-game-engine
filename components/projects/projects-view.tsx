@@ -7,7 +7,6 @@ import {
   ArchiveRestore,
   Copy,
   Download,
-  Globe,
   ImageOff,
   LayoutGrid,
   MoreHorizontal,
@@ -28,6 +27,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ViewHeader } from "@/components/app-shell/view-header"
+import { ExportGameSubmenu } from "@/components/app-shell/export-game-menu"
 import { useProjectActions } from "@/components/app-shell/project-actions"
 import { useGameStore } from "@/lib/game-store"
 import type { GameProject } from "@/lib/game-types"
@@ -299,12 +299,7 @@ function ProjectCard({
                 {project.archived ? "Desarchivar" : "Archivar"}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => actions.exportGame(project)}
-                disabled={project.scenes.length === 0 || actions.busy.exportingGame}
-              >
-                <Globe className="size-4" /> Exportar juego (HTML)
-              </DropdownMenuItem>
+              <ExportGameSubmenu project={project} />
               <DropdownMenuItem onClick={() => exportProjectJson(project)}>
                 <Download className="size-4" /> Exportar proyecto (JSON)
               </DropdownMenuItem>

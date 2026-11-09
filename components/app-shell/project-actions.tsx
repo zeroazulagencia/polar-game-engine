@@ -26,7 +26,7 @@ import { useGameStore } from "@/lib/game-store"
 import type { GameProject } from "@/lib/game-types"
 import { readImportFile, slugifyName } from "@/lib/project-files"
 import { applyContentPack, describePack } from "@/lib/content-pack"
-import { downloadStandaloneGame } from "@/lib/export-game"
+import { downloadStandaloneGame, packageGame, type PackageTarget } from "@/lib/export-game"
 import { confirmAction, notify } from "@/components/ui/confirm-host"
 
 interface ProjectActions {
@@ -38,9 +38,11 @@ interface ProjectActions {
   newProject: () => void
   /** Import a project (opens it) or an assets pack (added to the open project). */
   importFile: (file: File) => Promise<void>
-  exportGame: (project: GameProject) => Promise<void>
+  /** As a web page (downloaded) or packaged for a system (written to dist/). */
+  exportGame: (project: GameProject, target?: "html" | PackageTarget) => Promise<void>
   requestDelete: (project: GameProject) => void
-  busy: { importing: boolean; exportingGame: boolean }
+  /** exportingGame: what is being exported right now */
+  busy: { importing: boolean; exportingGame: false | "html" | PackageTarget }
 }
 
 const Ctx = createContext<ProjectActions | null>(null)
@@ -59,7 +61,7 @@ export function ProjectActionsProvider({ children }: { children: ReactNode }) {
   const store = useGameStore()
   const { project, isNew, dirty } = store
 
-  const [busy, setBusy] = useState({ importing: false, exportingGame: false })
+  const [busy, setBusy] = useState<ProjectActions["busy"]>({ importing: false, exportingGame: false })
   const [saveAsOpen, setSaveAsOpen] = useState(false)
   const [saveAsName, setSaveAsName] = useState("")
   /** action waiting for the user to save or discard the current changes */
@@ -157,10 +159,19 @@ export function ProjectActionsProvider({ children }: { children: ReactNode }) {
         setBusy((b) => ({ ...b, importing: false }))
       }
     },
-    exportGame: async (p) => {
-      setBusy((b) => ({ ...b, exportingGame: true }))
+    exportGame: async (p, target = "html") => {
+      setBusy((b) => ({ ...b, exportingGame: target }))
       try {
-        await downloadStandaloneGame(p, slugifyName(p.name))
+        if (target === "html") await downloadStandaloneGame(p, slugifyName(p.name))
+        else {
+          const { files, androidProjectOnly } = await packageGame(p, target)
+          await notify(
+            androidProjectOnly
+              ? `Proyecto de Android listo en ${files.join(", ")}.\nPara sacar el APK, ábrelo con Android Studio (Build → Generate APKs). Si instalas Android Studio, la próxima vez el APK sale solo.`
+              : `Listo: ${files.join(", ")}.\nSe abrió la carpeta. Es un .zip: quien lo reciba lo descomprime y abre el juego.`,
+            "Juego empaquetado",
+          )
+        }
       } catch (err) {
         await notify(err instanceof Error ? err.message : "No se pudo exportar el juego.", "No se pudo exportar")
       } finally {

@@ -7,7 +7,8 @@
     "dev": "npm run build:player && next dev -p 4600",
     "build": "npm run build:player && next build",
     "start": "next start -p 4600",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "package": "node scripts/package-game.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -62,6 +63,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@electron/packager": "18.4.4",
     "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22",
     "@types/react": "^19",
