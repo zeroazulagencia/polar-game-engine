@@ -60,7 +60,7 @@
           "id": "base-wp-f1",
           "x": 0.06,
           "y": 0.94,
-          "scale": 1,
+          "scale": 1.25,
           "brightness": 0.8,
           "links": [
             "base-wp-f2"
@@ -70,8 +70,10 @@
           "id": "base-wp-f2",
           "x": 0.3,
           "y": 0.93,
-          "scale": 1,
-          "brightness": 0.92,
+          "scale": 1.25,
+          "brightness": 0.95,
+          "tint": "#ffb060",
+          "tintStrength": 0.12,
           "links": [
             "base-wp-f1",
             "base-wp-f3",
@@ -83,10 +85,10 @@
           "id": "base-wp-f3",
           "x": 0.565,
           "y": 0.92,
-          "scale": 1,
-          "brightness": 1.05,
-          "tint": "#ffb060",
-          "tintStrength": 0.12,
+          "scale": 1.25,
+          "brightness": 1.12,
+          "tint": "#ffb34d",
+          "tintStrength": 0.32,
           "links": [
             "base-wp-f2",
             "base-wp-f4",
@@ -99,8 +101,10 @@
           "id": "base-wp-f4",
           "x": 0.8,
           "y": 0.93,
-          "scale": 1,
-          "brightness": 0.92,
+          "scale": 1.25,
+          "brightness": 0.95,
+          "tint": "#ffb060",
+          "tintStrength": 0.12,
           "links": [
             "base-wp-f3",
             "base-wp-f5",
@@ -112,7 +116,7 @@
           "id": "base-wp-f5",
           "x": 0.92,
           "y": 0.94,
-          "scale": 1,
+          "scale": 1.25,
           "brightness": 0.8,
           "links": [
             "base-wp-f4",
@@ -123,7 +127,7 @@
           "id": "base-wp-b1",
           "x": 0.27,
           "y": 0.8,
-          "scale": 0.84,
+          "scale": 1.05,
           "brightness": 0.85,
           "links": [
             "base-wp-b2",
@@ -134,8 +138,10 @@
           "id": "base-wp-b2",
           "x": 0.45,
           "y": 0.785,
-          "scale": 0.82,
-          "brightness": 1,
+          "scale": 1.03,
+          "brightness": 1.05,
+          "tint": "#ffb34d",
+          "tintStrength": 0.25,
           "links": [
             "base-wp-b1",
             "base-wp-b3",
@@ -147,10 +153,10 @@
           "id": "base-wp-b3",
           "x": 0.565,
           "y": 0.775,
-          "scale": 0.81,
-          "brightness": 1.15,
-          "tint": "#ffb060",
-          "tintStrength": 0.22,
+          "scale": 1.01,
+          "brightness": 1.22,
+          "tint": "#ffb34d",
+          "tintStrength": 0.5,
           "links": [
             "base-wp-b2",
             "base-wp-b4",
@@ -161,8 +167,10 @@
           "id": "base-wp-b4",
           "x": 0.69,
           "y": 0.785,
-          "scale": 0.82,
-          "brightness": 1,
+          "scale": 1.03,
+          "brightness": 1.05,
+          "tint": "#ffb34d",
+          "tintStrength": 0.25,
           "links": [
             "base-wp-b3",
             "base-wp-b5",
@@ -174,7 +182,7 @@
           "id": "base-wp-b5",
           "x": 0.88,
           "y": 0.8,
-          "scale": 0.84,
+          "scale": 1.05,
           "brightness": 0.85,
           "links": [
             "base-wp-b4",
@@ -972,7 +980,8 @@
           "base-as-ripman-left-walk-12"
         ]
       }
-    }
+    },
+    "shadow": true
   },
   "sounds": [
     {
@@ -1053,7 +1062,7 @@
     "padding": 16,
     "typewriterSpeed": 40
   },
-  "updatedAt": 1794185069330,
+  "updatedAt": 1794194157737,
   "assets": [
     {
       "id": "base-as-celda",
