@@ -62,7 +62,15 @@ function slugify(name) {
 /** File names can't carry these on Windows. */
 const safeFileName = (name) => name.replace(/[<>:"/\\|?*\u0000-\u001f]/g, "").trim() || "Juego"
 /** Without accents: zip tools on Windows and Linux don't always read them right. */
-const asciiName = (name) => safeFileName(name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\x20-\x7e]/g, ""))
+const asciiName = (name) =>
+  safeFileName(
+    name
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[\u2013\u2014]/g, "-")
+      .replace(/[^\x20-\x7e]/g, "")
+      .replace(/\s+/g, " "),
+  )
 
 function run(cmd, args, cwd) {
   const res = spawnSync(cmd, args, { cwd, stdio: "inherit", shell: process.platform === "win32" })

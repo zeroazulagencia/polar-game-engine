@@ -39,6 +39,8 @@ export async function POST(req: NextRequest) {
     child.on("error", (err) => resolve({ code: 1, log: log + String(err) }))
   })
   fs.rmSync(htmlFile, { force: true })
+  // leave dist/ with just the builds
+  if (fs.readdirSync(tmp).length === 0) fs.rmdirSync(tmp)
 
   if (code !== 0) {
     const reason = log.match(/✗ (.*)/)?.[1] ?? log.trim().split("\n").slice(-3).join("\n")
