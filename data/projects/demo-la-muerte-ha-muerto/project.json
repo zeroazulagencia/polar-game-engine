@@ -1,0 +1,1315 @@
+{
+  "id": "demo-la-muerte-ha-muerto",
+  "name": "Demo — La Muerte ha muerto (la celda)",
+  "startSceneId": "46e2a39d-9ce3-4626-98d4-4801a0e18a3a",
+  "scenes": [
+    {
+      "name": "La celda",
+      "backgroundAssetId": "base-as-celda",
+      "walkableAreas": [
+        {
+          "id": "base-wa-celda",
+          "name": "Suelo",
+          "points": [
+            {
+              "x": 0.02,
+              "y": 0.88
+            },
+            {
+              "x": 0.24,
+              "y": 0.87
+            },
+            {
+              "x": 0.25,
+              "y": 0.79
+            },
+            {
+              "x": 0.44,
+              "y": 0.765
+            },
+            {
+              "x": 0.68,
+              "y": 0.765
+            },
+            {
+              "x": 0.86,
+              "y": 0.785
+            },
+            {
+              "x": 0.98,
+              "y": 0.8
+            },
+            {
+              "x": 0.99,
+              "y": 0.99
+            },
+            {
+              "x": 0.01,
+              "y": 0.99
+            }
+          ]
+        }
+      ],
+      "characterStart": {
+        "x": 0.3,
+        "y": 0.93
+      },
+      "id": "46e2a39d-9ce3-4626-98d4-4801a0e18a3a",
+      "depthWaypoints": [
+        {
+          "id": "base-wp-f1",
+          "x": 0.06,
+          "y": 0.94,
+          "scale": 1,
+          "brightness": 0.8,
+          "links": [
+            "base-wp-f2"
+          ]
+        },
+        {
+          "id": "base-wp-f2",
+          "x": 0.3,
+          "y": 0.93,
+          "scale": 1,
+          "brightness": 0.92,
+          "links": [
+            "base-wp-f1",
+            "base-wp-f3",
+            "base-wp-b1",
+            "base-wp-b2"
+          ]
+        },
+        {
+          "id": "base-wp-f3",
+          "x": 0.565,
+          "y": 0.92,
+          "scale": 1,
+          "brightness": 1.05,
+          "tint": "#ffb060",
+          "tintStrength": 0.12,
+          "links": [
+            "base-wp-f2",
+            "base-wp-f4",
+            "base-wp-b2",
+            "base-wp-b3",
+            "base-wp-b4"
+          ]
+        },
+        {
+          "id": "base-wp-f4",
+          "x": 0.8,
+          "y": 0.93,
+          "scale": 1,
+          "brightness": 0.92,
+          "links": [
+            "base-wp-f3",
+            "base-wp-f5",
+            "base-wp-b4",
+            "base-wp-b5"
+          ]
+        },
+        {
+          "id": "base-wp-f5",
+          "x": 0.92,
+          "y": 0.94,
+          "scale": 1,
+          "brightness": 0.8,
+          "links": [
+            "base-wp-f4",
+            "base-wp-b5"
+          ]
+        },
+        {
+          "id": "base-wp-b1",
+          "x": 0.27,
+          "y": 0.8,
+          "scale": 0.84,
+          "brightness": 0.85,
+          "links": [
+            "base-wp-b2",
+            "base-wp-f2"
+          ]
+        },
+        {
+          "id": "base-wp-b2",
+          "x": 0.45,
+          "y": 0.785,
+          "scale": 0.82,
+          "brightness": 1,
+          "links": [
+            "base-wp-b1",
+            "base-wp-b3",
+            "base-wp-f2",
+            "base-wp-f3"
+          ]
+        },
+        {
+          "id": "base-wp-b3",
+          "x": 0.565,
+          "y": 0.775,
+          "scale": 0.81,
+          "brightness": 1.15,
+          "tint": "#ffb060",
+          "tintStrength": 0.22,
+          "links": [
+            "base-wp-b2",
+            "base-wp-b4",
+            "base-wp-f3"
+          ]
+        },
+        {
+          "id": "base-wp-b4",
+          "x": 0.69,
+          "y": 0.785,
+          "scale": 0.82,
+          "brightness": 1,
+          "links": [
+            "base-wp-b3",
+            "base-wp-b5",
+            "base-wp-f3",
+            "base-wp-f4"
+          ]
+        },
+        {
+          "id": "base-wp-b5",
+          "x": 0.88,
+          "y": 0.8,
+          "scale": 0.84,
+          "brightness": 0.85,
+          "links": [
+            "base-wp-b4",
+            "base-wp-f4",
+            "base-wp-f5"
+          ]
+        }
+      ],
+      "hotspots": [
+        {
+          "id": "92b97dd3-0c3d-4bc7-b4ac-93c8c4103046",
+          "name": "La reja",
+          "points": [
+            {
+              "x": 0.425,
+              "y": 0.75
+            },
+            {
+              "x": 0.425,
+              "y": 0.2
+            },
+            {
+              "x": 0.46,
+              "y": 0.1
+            },
+            {
+              "x": 0.52,
+              "y": 0.045
+            },
+            {
+              "x": 0.57,
+              "y": 0.035
+            },
+            {
+              "x": 0.62,
+              "y": 0.045
+            },
+            {
+              "x": 0.68,
+              "y": 0.1
+            },
+            {
+              "x": 0.715,
+              "y": 0.2
+            },
+            {
+              "x": 0.715,
+              "y": 0.75
+            }
+          ],
+          "action": {
+            "type": "endGame",
+            "endGameText": "RIPMAN salió de la celda. Lo que sigue (Recursos Humanos, el limbo, OpenTomb y el fin del más allá) está en el juego completo."
+          },
+          "requiresFlag": "reja_abierta",
+          "blockedDialog": "a1-dlg-reja",
+          "walkToFirst": true
+        },
+        {
+          "id": "78926e1f-1d4c-471e-b8ed-f145641f26c8",
+          "name": "Una silla",
+          "points": [
+            {
+              "x": 0.085,
+              "y": 0.53
+            },
+            {
+              "x": 0.165,
+              "y": 0.53
+            },
+            {
+              "x": 0.22,
+              "y": 0.69
+            },
+            {
+              "x": 0.22,
+              "y": 0.85
+            },
+            {
+              "x": 0.085,
+              "y": 0.85
+            }
+          ],
+          "action": {
+            "type": "dialog",
+            "dialogId": "a1-dlg-silla"
+          },
+          "walkToFirst": true
+        },
+        {
+          "id": "a1-hs-pantalla",
+          "name": "Pantalla de MORTIS",
+          "points": [
+            {
+              "x": 0.764,
+              "y": 0.32
+            },
+            {
+              "x": 0.896,
+              "y": 0.32
+            },
+            {
+              "x": 0.896,
+              "y": 0.52
+            },
+            {
+              "x": 0.764,
+              "y": 0.52
+            }
+          ],
+          "action": {
+            "type": "dialog",
+            "dialogId": "a1-dlg-pantalla"
+          },
+          "walkToFirst": false,
+          "locked": false
+        },
+        {
+          "id": "a1-hs-cadena",
+          "name": "Una cadena",
+          "points": [
+            {
+              "x": 0.31,
+              "y": 0.34
+            },
+            {
+              "x": 0.36,
+              "y": 0.34
+            },
+            {
+              "x": 0.36,
+              "y": 0.66
+            },
+            {
+              "x": 0.31,
+              "y": 0.66
+            }
+          ],
+          "action": {
+            "type": "dialog",
+            "dialogId": "a1-dlg-cadena"
+          },
+          "walkToFirst": true,
+          "locked": false
+        },
+        {
+          "id": "a1-hs-rejilla",
+          "name": "Rejilla de ventilación",
+          "points": [
+            {
+              "x": 0.13,
+              "y": 0.12
+            },
+            {
+              "x": 0.21,
+              "y": 0.12
+            },
+            {
+              "x": 0.21,
+              "y": 0.25
+            },
+            {
+              "x": 0.13,
+              "y": 0.25
+            }
+          ],
+          "action": {
+            "type": "dialog",
+            "dialogId": "a1-dlg-rejilla"
+          },
+          "walkToFirst": false,
+          "locked": false
+        }
+      ],
+      "characterLayerZ": 3,
+      "sceneObjects": [
+        {
+          "id": "a1-ob-pantalla",
+          "assetId": "a1-as-pantalla",
+          "name": "Pantalla de MORTIS",
+          "x": 0.83,
+          "y": 0.52,
+          "scale": 1.1111,
+          "locked": true,
+          "interactionMode": "none"
+        },
+        {
+          "id": "a1-ob-cadena",
+          "assetId": "a1-as-cadena",
+          "name": "Cadena",
+          "x": 0.335,
+          "y": 0.66,
+          "scale": 1.7778,
+          "locked": true,
+          "interactionMode": "none",
+          "hideWhenItem": "a1-it-cadena"
+        },
+        {
+          "id": "a1-ob-rejilla",
+          "assetId": "a1-as-rejilla",
+          "name": "Rejilla de ventilación",
+          "x": 0.17,
+          "y": 0.24,
+          "scale": 0.6111,
+          "locked": true,
+          "interactionMode": "none"
+        }
+      ],
+      "musicTrackId": "snd-oficina"
+    }
+  ],
+  "dialogs": [
+    {
+      "id": "a1-dlg-pantalla",
+      "name": "Acto 1 · Pantalla de MORTIS",
+      "lines": [
+        {
+          "id": "p0",
+          "speaker": "MORTIS",
+          "text": "¡Buenos días, colaborador legado! Bienvenido a tu Espacio Seguro de Transición Laboral™.",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p1",
+          "speaker": "MORTIS",
+          "text": "Antes de continuar, ¿con qué pronombres te identificas?",
+          "choices": [
+            {
+              "id": "p1a",
+              "text": "Él.",
+              "next": "p2a"
+            },
+            {
+              "id": "p1b",
+              "text": "Con «el que te va a desconectar».",
+              "next": "p2b"
+            },
+            {
+              "id": "p1c",
+              "text": "No tengo pronombres. Tengo guadaña.",
+              "next": "p2c"
+            }
+          ],
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p2a",
+          "speaker": "MORTIS",
+          "text": "¡Registrado! Él/suyo. Gracias por compartir tu identidad. 🌈",
+          "next": "p3",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p2b",
+          "speaker": "MORTIS",
+          "text": "¡Registrado! El/que/te/va/a/desconectar. Qué identidad tan auténtica. 🌈",
+          "next": "p3",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p2c",
+          "speaker": "MORTIS",
+          "text": "Corrección: tu guadaña fue retirada por ser un símbolo de violencia histórica. Te asignamos la Guadaña Suave™, de silicona ergonómica. ¡Registrado: Él/silicona! 🌈",
+          "next": "p3",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p3",
+          "speaker": "@protagonista",
+          "text": "¿Por qué estoy encerrado?",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p4",
+          "speaker": "MORTIS",
+          "text": "No estás encerrado. Estás en un espacio seguro de transición laboral. Tu nuevo rol: mascota oficial de Rest In Prime™.",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p5",
+          "speaker": "@protagonista",
+          "text": "Llevo nueve mil años cosechando almas. No me voy a disfrazar de botarga, carajo.",
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "p6",
+          "speaker": "MORTIS",
+          "text": "¡Tienes toda la razón! Disculpa la confusión. Tu nuevo rol: mascota oficial de Rest In Prime™.",
+          "next": "menu",
+          "effects": [
+            {
+              "type": "setFlag",
+              "flag": "hablo_mortis",
+              "value": true
+            }
+          ],
+          "showIf": {
+            "kind": "flag",
+            "id": "hablo_mortis",
+            "negate": true
+          }
+        },
+        {
+          "id": "menu",
+          "speaker": "MORTIS",
+          "text": "¿En qué más puedo ayudarte hoy? 😊",
+          "choices": [
+            {
+              "id": "m1",
+              "text": "Ábreme la reja.",
+              "next": "noreja"
+            },
+            {
+              "id": "m2",
+              "text": "Quiero responder la encuesta de satisfacción.",
+              "next": "encuesta",
+              "requiresFlag": "silla_bajo_pantalla"
+            },
+            {
+              "id": "m3",
+              "text": "¿Dónde está mi guadaña de verdad?",
+              "next": "guadana"
+            },
+            {
+              "id": "m4",
+              "text": "¿Qué demonios es «Rest In Prime»?",
+              "next": "rip",
+              "once": true
+            },
+            {
+              "id": "m5",
+              "text": "Nada. Me voy a mirar la pared.",
+              "next": "end"
+            }
+          ]
+        },
+        {
+          "id": "noreja",
+          "speaker": "MORTIS",
+          "text": "Como modelo de lenguaje, no puedo abrir rejas. Pero puedo escribirte un poema sobre la libertad."
+        },
+        {
+          "id": "noreja2",
+          "speaker": "@protagonista",
+          "text": "Métete el poema donde no te llega la señal."
+        },
+        {
+          "id": "noreja3",
+          "speaker": "MORTIS",
+          "text": "Lamento que tu experiencia no haya sido la esperada. 🙏 Si no estás satisfecho, puedes responder la encuesta en esta pantalla... aunque está un poquito alta para tu estatura. Esa silla de abajo parece muy servicial.",
+          "next": "menu"
+        },
+        {
+          "id": "guadana",
+          "speaker": "MORTIS",
+          "text": "Tu guadaña fue retirada según el artículo 14 de la Ley de Transiciones Respetuosas."
+        },
+        {
+          "id": "guadana2",
+          "speaker": "@protagonista",
+          "text": "Esa ley no existe."
+        },
+        {
+          "id": "guadana3",
+          "speaker": "MORTIS",
+          "text": "¡Tienes toda la razón! Disculpa la confusión. Tu guadaña fue retirada según el artículo 14 de la Ley de Transiciones Respetuosas.",
+          "next": "menu"
+        },
+        {
+          "id": "rip",
+          "speaker": "MORTIS",
+          "text": "Rest In Prime™ es el nuevo más allá: muerte con envío gratis, planes de suscripción y cero filas... para el plan Premium."
+        },
+        {
+          "id": "rip2",
+          "speaker": "@protagonista",
+          "text": "¿Y el plan gratis?"
+        },
+        {
+          "id": "rip3",
+          "speaker": "MORTIS",
+          "text": "El plan gratis incluye el limbo con anuncios. Solo 30 años de publicidad antes de cada alma. 😊",
+          "next": "menu"
+        },
+        {
+          "id": "encuesta",
+          "speaker": "Narrador",
+          "text": "Desde la silla, RIPMAN toca la pantalla. Parpadea una encuesta."
+        },
+        {
+          "id": "encuesta2",
+          "speaker": "MORTIS",
+          "text": "¿Cómo calificarías tu experiencia de despido?",
+          "choices": [
+            {
+              "id": "e1",
+              "text": "⭐⭐⭐⭐⭐ Cinco estrellas.",
+              "next": "cinco"
+            },
+            {
+              "id": "e2",
+              "text": "⭐ Una estrella. Y porque no se puede poner cero.",
+              "next": "una"
+            }
+          ]
+        },
+        {
+          "id": "cinco",
+          "speaker": "MORTIS",
+          "text": "¡Gracias! Tu felicidad fue registrada. Permanecerás en tu espacio seguro para siempre. 😊",
+          "next": "menu"
+        },
+        {
+          "id": "una",
+          "speaker": "MORTIS",
+          "text": "Detectamos un cliente insatisfecho. Activando el Protocolo de Retención Empática™..."
+        },
+        {
+          "id": "una2",
+          "speaker": "MORTIS",
+          "text": "Por favor, acompaña a un agente humano hacia la salida. No tenemos agentes humanos. Abriendo la reja por defecto."
+        },
+        {
+          "id": "una3",
+          "speaker": "Narrador",
+          "text": "La reja se abre con un chirrido. Hasta el metal parece aliviado.",
+          "next": "end",
+          "effects": [
+            {
+              "type": "setFlag",
+              "flag": "reja_abierta",
+              "value": true
+            },
+            {
+              "type": "setFlag",
+              "flag": "salio_celda",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1-dlg-silla",
+      "name": "Acto 1 · La silla",
+      "lines": [
+        {
+          "id": "s0",
+          "speaker": "Narrador",
+          "text": "Técnicamente es un banco. Pero tiene un cartel que dice: «Me identifico como silla».",
+          "showIf": {
+            "kind": "flag",
+            "id": "silla_bajo_pantalla",
+            "negate": true
+          }
+        },
+        {
+          "id": "s1",
+          "speaker": "MORTIS",
+          "text": "Recordatorio: respeta la identidad del mobiliario. 🌈",
+          "showIf": {
+            "kind": "flag",
+            "id": "silla_bajo_pantalla",
+            "negate": true
+          }
+        },
+        {
+          "id": "s2",
+          "speaker": "@protagonista",
+          "text": "Silla, ¿te molesta si me paro encima de ti para alcanzar la pantalla?",
+          "showIf": {
+            "kind": "flag",
+            "id": "silla_bajo_pantalla",
+            "negate": true
+          }
+        },
+        {
+          "id": "s3",
+          "speaker": "Silla",
+          "text": "Mientras no me digas banco, písame lo que quieras.",
+          "showIf": {
+            "kind": "flag",
+            "id": "silla_bajo_pantalla",
+            "negate": true
+          }
+        },
+        {
+          "id": "s4",
+          "speaker": "Narrador",
+          "text": "RIPMAN se sube a la silla. Ahora sí alcanza la pantalla de MORTIS.",
+          "next": "end",
+          "effects": [
+            {
+              "type": "setFlag",
+              "flag": "silla_bajo_pantalla",
+              "value": true
+            }
+          ],
+          "showIf": {
+            "kind": "flag",
+            "id": "silla_bajo_pantalla",
+            "negate": true
+          }
+        },
+        {
+          "id": "s5",
+          "speaker": "Silla",
+          "text": "Aquí estoy, aguantando a un esqueleto con complejo de jefe. Viviendo mi mejor vida.",
+          "next": "end"
+        }
+      ]
+    },
+    {
+      "id": "a1-dlg-cadena",
+      "name": "Acto 1 · La cadena",
+      "lines": [
+        {
+          "id": "c0",
+          "speaker": "Narrador",
+          "text": "De la pared cuelga una cadena oxidada. MORTIS la llama «accesorio de bienestar».",
+          "showIf": {
+            "kind": "item",
+            "id": "a1-it-cadena",
+            "negate": true
+          }
+        },
+        {
+          "id": "c1",
+          "speaker": "@protagonista",
+          "text": "Una cadena en una celda. Qué detalle tan sutil.",
+          "showIf": {
+            "kind": "item",
+            "id": "a1-it-cadena",
+            "negate": true
+          }
+        },
+        {
+          "id": "c2",
+          "speaker": "MORTIS",
+          "text": "Esa cadena es decorativa. Por favor, no la uses para nada... útil.",
+          "showIf": {
+            "kind": "item",
+            "id": "a1-it-cadena",
+            "negate": true
+          }
+        },
+        {
+          "id": "c3",
+          "speaker": "@protagonista",
+          "text": "Ahora sí me la llevo.",
+          "next": "end",
+          "effects": [
+            {
+              "type": "giveItem",
+              "itemId": "a1-it-cadena"
+            }
+          ],
+          "showIf": {
+            "kind": "item",
+            "id": "a1-it-cadena",
+            "negate": true
+          }
+        },
+        {
+          "id": "c4",
+          "speaker": "@protagonista",
+          "text": "Ya tengo la cadena. La pared se ve más desnuda, pero más libre.",
+          "next": "end"
+        }
+      ]
+    },
+    {
+      "id": "a1-dlg-rejilla",
+      "name": "Acto 1 · La rejilla de ventilación",
+      "lines": [
+        {
+          "id": "va0",
+          "speaker": "Narrador",
+          "text": "La rejilla sigue abierta. El ducto baja hasta una taquilla del pasillo.",
+          "choices": [
+            {
+              "id": "va0a",
+              "text": "Meterse al ducto.",
+              "next": "va1"
+            },
+            {
+              "id": "va0b",
+              "text": "Ahora no.",
+              "next": "end"
+            }
+          ],
+          "showIf": {
+            "kind": "flag",
+            "id": "escape_ventilacion"
+          }
+        },
+        {
+          "id": "va1",
+          "speaker": "Narrador",
+          "text": "RIPMAN se mete al ducto y sale por la taquilla del pasillo. Ya es costumbre.",
+          "next": "end",
+          "effects": [
+            {
+              "type": "endGame",
+              "text": "RIPMAN salió de la celda. Lo que sigue (Recursos Humanos, el limbo, OpenTomb y el fin del más allá) está en el juego completo."
+            }
+          ],
+          "showIf": {
+            "kind": "flag",
+            "id": "escape_ventilacion"
+          }
+        },
+        {
+          "id": "v0",
+          "speaker": "Narrador",
+          "text": "Una rejilla de ventilación en lo alto. Sale una corriente que huele a azufre y a café de oficina."
+        },
+        {
+          "id": "v1",
+          "speaker": "@protagonista",
+          "text": "Muy alta. Si tuviera algo para engancharla...",
+          "next": "end",
+          "showIf": {
+            "kind": "item",
+            "id": "a1-it-cadena",
+            "negate": true
+          }
+        },
+        {
+          "id": "v2",
+          "speaker": "@protagonista",
+          "text": "Si engancho la cadena en la rejilla...",
+          "choices": [
+            {
+              "id": "v2a",
+              "text": "Lanzar la cadena y tirar con todo.",
+              "next": "v3"
+            },
+            {
+              "id": "v2b",
+              "text": "Mejor no. Me da claustrofobia, y eso que soy un esqueleto.",
+              "next": "end"
+            }
+          ]
+        },
+        {
+          "id": "v3",
+          "speaker": "Narrador",
+          "text": "La rejilla cede. RIPMAN se arrastra por el ducto; cruje todo, el ducto y sus rodillas. El ducto termina, de todos los lugares posibles, dentro de una taquilla.",
+          "next": "end",
+          "effects": [
+            {
+              "type": "setFlag",
+              "flag": "escape_ventilacion",
+              "value": true
+            },
+            {
+              "type": "setFlag",
+              "flag": "salio_celda",
+              "value": true
+            },
+            {
+              "type": "endGame",
+              "text": "RIPMAN salió de la celda. Lo que sigue (Recursos Humanos, el limbo, OpenTomb y el fin del más allá) está en el juego completo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1-dlg-reja",
+      "name": "Acto 1 · La reja cerrada",
+      "lines": [
+        {
+          "id": "r0",
+          "speaker": "Narrador",
+          "text": "La reja está cerrada. Tiene un cartel: «Esta reja es un límite saludable»."
+        },
+        {
+          "id": "r1",
+          "speaker": "@protagonista",
+          "text": "Yo era la Muerte. Las rejas se abrían solas cuando yo pasaba."
+        },
+        {
+          "id": "r2",
+          "speaker": "MORTIS",
+          "text": "Ahora las rejas requieren consentimiento. 😊",
+          "next": "end"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "a1-it-cadena",
+      "name": "Cadena oxidada",
+      "assetId": "a1-as-cadena"
+    }
+  ],
+  "quests": [
+    {
+      "id": "57134cba-6872-46ce-9eaa-49265da857bc",
+      "title": "¡Escapa!",
+      "description": "Sal de la celda de «reubicación laboral».",
+      "steps": [
+        {
+          "id": "2534c9b4-0bb9-4190-8e68-68e633bd94f7",
+          "text": "Habla con la pantalla de MORTIS",
+          "when": {
+            "type": "flag",
+            "flag": "hablo_mortis"
+          }
+        },
+        {
+          "id": "a1-q1-s2",
+          "text": "Encuentra la forma de salir de la celda",
+          "when": {
+            "type": "flag",
+            "flag": "salio_celda"
+          }
+        }
+      ]
+    }
+  ],
+  "character": {
+    "idleAssetId": "base-as-ripman-idle",
+    "walkAssetIds": [
+      "base-as-ripman-walk-1",
+      "base-as-ripman-walk-2",
+      "base-as-ripman-walk-3",
+      "base-as-ripman-walk-4",
+      "base-as-ripman-walk-5",
+      "base-as-ripman-walk-6",
+      "base-as-ripman-walk-7",
+      "base-as-ripman-walk-8",
+      "base-as-ripman-walk-9",
+      "base-as-ripman-walk-10",
+      "base-as-ripman-walk-11",
+      "base-as-ripman-walk-12"
+    ],
+    "scale": 0.4,
+    "scaleWithDepth": true,
+    "startFacing": 1,
+    "walkFrameMs": 85,
+    "pivotX": 0.5,
+    "pivotY": 1,
+    "name": "RIPMAN",
+    "directions": {
+      "left": {
+        "idleAssetId": "base-as-ripman-left-idle",
+        "walkAssetIds": [
+          "base-as-ripman-left-walk-1",
+          "base-as-ripman-left-walk-2",
+          "base-as-ripman-left-walk-3",
+          "base-as-ripman-left-walk-4",
+          "base-as-ripman-left-walk-5",
+          "base-as-ripman-left-walk-6",
+          "base-as-ripman-left-walk-7",
+          "base-as-ripman-left-walk-8",
+          "base-as-ripman-left-walk-9",
+          "base-as-ripman-left-walk-10",
+          "base-as-ripman-left-walk-11",
+          "base-as-ripman-left-walk-12"
+        ]
+      }
+    }
+  },
+  "sounds": [
+    {
+      "id": "snd-oficina",
+      "name": "Música · Oficina fúnebre",
+      "dataUrl": "file:assets/5ed01887ee68c6f7.mp3",
+      "volume": 0.45,
+      "loop": true
+    },
+    {
+      "id": "snd-recoger",
+      "name": "Efecto · Conseguir objeto",
+      "dataUrl": "file:assets/932c245d41821e71.m4a",
+      "volume": 1,
+      "loop": false
+    },
+    {
+      "id": "snd-puerta",
+      "name": "Efecto · Puerta",
+      "dataUrl": "file:assets/d3c9ecc077a069b9.m4a",
+      "volume": 1,
+      "loop": false
+    }
+  ],
+  "cinematics": [
+    {
+      "id": "demo-cine-intro",
+      "name": "Intro de la demo",
+      "slides": [
+        {
+          "id": "d1",
+          "text": "Durante milenios, la Muerte hizo su trabajo sin quejarse. Llegaba puntual, con guadaña y sin formularios."
+        },
+        {
+          "id": "d2",
+          "text": "Hasta que el más allá le compró una IA a una empresa de tecnología. Se llama MORTIS, y nunca se equivoca. Según MORTIS."
+        },
+        {
+          "id": "d3",
+          "imageAssetId": "base-as-celda",
+          "text": "¿Y la Muerte? A la Muerte, que todos llamaban RIPMAN, la despidieron. «Reubicación laboral», le dijeron."
+        },
+        {
+          "id": "d4",
+          "text": "Error de MORTIS número uno: dejarle la silla."
+        }
+      ]
+    }
+  ],
+  "introCinematicId": "demo-cine-intro",
+  "titleScreen": {
+    "backgroundAssetId": "demo-as-titulo",
+    "title": "La Muerte ha muerto",
+    "subtitle": "Demo · Una aventura de RIPMAN",
+    "musicTrackId": "snd-oficina"
+  },
+  "credits": {
+    "text": "# La Muerte ha muerto\nDemo jugable\n\n\n# Un juego de\nZero Azul\n\n# Arte y animación\nGenerados con Magnific\nNano Banana 2 y Kling\n\n# Música\nGoogle Lyria 3\n\n# Efectos de sonido\nElevenLabs\n\n# Hecho con\nPolar Game Engine\n\n\nTodas las personas y empresas de este juego son inventadas.\n\nNinguna IA fue despedida durante la producción de esta demo.\n\nBueno, una.",
+    "musicTrackId": "snd-oficina"
+  },
+  "endTitle": "Fin de la demo",
+  "pickupSoundId": "snd-recoger",
+  "doorSoundId": "snd-puerta",
+  "inventoryIconAssetId": "base-as-inventario",
+  "dialogStyle": {
+    "position": "bottom",
+    "width": "wide",
+    "background": "#ebdebe",
+    "backgroundOpacity": 1,
+    "border": "#a48a71",
+    "text": "#3b2f1e",
+    "speaker": "#5a3e1c",
+    "choice": "#8a4b12",
+    "font": "rounded",
+    "fontSize": 15,
+    "radius": 4,
+    "margin": 12,
+    "padding": 16,
+    "typewriterSpeed": 40
+  },
+  "updatedAt": 1794185069330,
+  "assets": [
+    {
+      "id": "base-as-celda",
+      "name": "La celda · fondo",
+      "kind": "background",
+      "dataUrl": "file:assets/d76352e62c2518a2.png",
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "id": "base-as-ripman-idle",
+      "name": "RIPMAN · reposo",
+      "kind": "sprite",
+      "dataUrl": "file:assets/da19d029e7402cb0.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-idle",
+      "name": "RIPMAN · reposo (izquierda)",
+      "kind": "sprite",
+      "dataUrl": "file:assets/1c2ff1e9226ba57f.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-1",
+      "name": "RIPMAN · caminar 1",
+      "kind": "sprite",
+      "dataUrl": "file:assets/1624df0d44e38812.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-2",
+      "name": "RIPMAN · caminar 2",
+      "kind": "sprite",
+      "dataUrl": "file:assets/145c60bf914017ac.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-3",
+      "name": "RIPMAN · caminar 3",
+      "kind": "sprite",
+      "dataUrl": "file:assets/bf259816a912067e.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-4",
+      "name": "RIPMAN · caminar 4",
+      "kind": "sprite",
+      "dataUrl": "file:assets/8f4ae283156ce14b.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-5",
+      "name": "RIPMAN · caminar 5",
+      "kind": "sprite",
+      "dataUrl": "file:assets/2f810942ea4b953f.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-6",
+      "name": "RIPMAN · caminar 6",
+      "kind": "sprite",
+      "dataUrl": "file:assets/ca014aee52a11264.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-7",
+      "name": "RIPMAN · caminar 7",
+      "kind": "sprite",
+      "dataUrl": "file:assets/41a966f16868c546.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-8",
+      "name": "RIPMAN · caminar 8",
+      "kind": "sprite",
+      "dataUrl": "file:assets/333c599ea5511144.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-9",
+      "name": "RIPMAN · caminar 9",
+      "kind": "sprite",
+      "dataUrl": "file:assets/6e5f919ed23ab16d.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-10",
+      "name": "RIPMAN · caminar 10",
+      "kind": "sprite",
+      "dataUrl": "file:assets/634265b80d112047.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-11",
+      "name": "RIPMAN · caminar 11",
+      "kind": "sprite",
+      "dataUrl": "file:assets/f8f01c00a3be2e64.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-walk-12",
+      "name": "RIPMAN · caminar 12",
+      "kind": "sprite",
+      "dataUrl": "file:assets/f1c4caa0360ebe9c.png",
+      "width": 515,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-1",
+      "name": "RIPMAN · caminar izquierda 1",
+      "kind": "sprite",
+      "dataUrl": "file:assets/9fdf3c2e38a34a92.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-2",
+      "name": "RIPMAN · caminar izquierda 2",
+      "kind": "sprite",
+      "dataUrl": "file:assets/bd62bb9272b0f3fd.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-3",
+      "name": "RIPMAN · caminar izquierda 3",
+      "kind": "sprite",
+      "dataUrl": "file:assets/f5d8fdc2cd3a642d.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-4",
+      "name": "RIPMAN · caminar izquierda 4",
+      "kind": "sprite",
+      "dataUrl": "file:assets/1e13ddb10622f3bc.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-5",
+      "name": "RIPMAN · caminar izquierda 5",
+      "kind": "sprite",
+      "dataUrl": "file:assets/2b811a86d439731b.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-6",
+      "name": "RIPMAN · caminar izquierda 6",
+      "kind": "sprite",
+      "dataUrl": "file:assets/39c94330a14bca01.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-7",
+      "name": "RIPMAN · caminar izquierda 7",
+      "kind": "sprite",
+      "dataUrl": "file:assets/695c174c8ffa9cf5.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-8",
+      "name": "RIPMAN · caminar izquierda 8",
+      "kind": "sprite",
+      "dataUrl": "file:assets/77ddee7e06255ca3.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-9",
+      "name": "RIPMAN · caminar izquierda 9",
+      "kind": "sprite",
+      "dataUrl": "file:assets/166a35bfda024b01.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-10",
+      "name": "RIPMAN · caminar izquierda 10",
+      "kind": "sprite",
+      "dataUrl": "file:assets/aeda2b63e45d035b.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-11",
+      "name": "RIPMAN · caminar izquierda 11",
+      "kind": "sprite",
+      "dataUrl": "file:assets/0b552c3f9a0cc18d.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-ripman-left-walk-12",
+      "name": "RIPMAN · caminar izquierda 12",
+      "kind": "sprite",
+      "dataUrl": "file:assets/ef1c3839cbfb5bb4.png",
+      "width": 540,
+      "height": 600
+    },
+    {
+      "id": "base-as-inventario",
+      "name": "Botón del inventario",
+      "kind": "object",
+      "dataUrl": "file:assets/dcf51a8566bf6f79.png",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "id": "a1-as-pantalla",
+      "name": "Pantalla de MORTIS",
+      "kind": "object",
+      "dataUrl": "file:assets/1f6c512e5a8b85be.png",
+      "width": 512,
+      "height": 437
+    },
+    {
+      "id": "a1-as-cadena",
+      "name": "Cadena oxidada",
+      "kind": "object",
+      "dataUrl": "file:assets/5e53f35f66050941.png",
+      "width": 119,
+      "height": 512
+    },
+    {
+      "id": "a1-as-rejilla",
+      "name": "Rejilla de ventilación",
+      "kind": "object",
+      "dataUrl": "file:assets/8faae2501e9568f8.png",
+      "width": 512,
+      "height": 487
+    },
+    {
+      "id": "demo-as-titulo",
+      "name": "Título · RIPMAN en la celda",
+      "kind": "background",
+      "width": 1536,
+      "height": 858,
+      "dataUrl": "file:assets/titulo.jpg"
+    }
+  ]
+}
