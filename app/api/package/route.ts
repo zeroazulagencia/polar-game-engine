@@ -21,7 +21,8 @@ export async function POST(req: NextRequest) {
   if (!html || !name) return Response.json({ error: "Falta el juego." }, { status: 400 })
 
   const root = path.resolve(/*turbopackIgnore: true*/ process.cwd())
-  const out = path.join(/*turbopackIgnore: true*/ root, "dist")
+  // POLAR_DIST_DIR: where the game's own repo wants its builds
+  const out = process.env.POLAR_DIST_DIR ? path.resolve(process.env.POLAR_DIST_DIR) : path.join(/*turbopackIgnore: true*/ root, "dist")
   const tmp = path.join(/*turbopackIgnore: true*/ out, ".tmp")
   fs.mkdirSync(tmp, { recursive: true })
   const htmlFile = path.join(/*turbopackIgnore: true*/ tmp, `juego-${Date.now()}.html`)
@@ -52,5 +53,5 @@ export async function POST(req: NextRequest) {
     const reveal = process.platform === "darwin" ? ["-R", files[0]] : [path.dirname(files[0])]
     spawn(opener, reveal, { detached: true, stdio: "ignore" }).unref()
   }
-  return Response.json({ files: files.map((f) => path.relative(root, f)), androidProjectOnly })
+  return Response.json({ files, androidProjectOnly })
 }

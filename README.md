@@ -71,6 +71,23 @@ npm run package -- mi-juego.html --target android --name "Mi juego" --id com.mie
 
 `--id` es el identificador de la app (el de Google Play o de Apple); si no lo pones, se arma uno a partir del nombre.
 
+## Tu juego en su propio repositorio
+
+Para un juego en serio conviene separar el juego del motor: tu repo guarda solo tu proyecto y usa Polar como submódulo, así actualizas el motor sin mezclarlo con tu contenido.
+
+```bash
+git submodule add https://github.com/zeroazulagencia/polar-game-engine.git engine
+npm --prefix engine install
+POLAR_DATA_DIR="$PWD/data" POLAR_DIST_DIR="$PWD/dist" npm --prefix engine run dev
+```
+
+| Variable | Qué hace | Si no la pones |
+| --- | --- | --- |
+| `POLAR_DATA_DIR` | Carpeta con tus proyectos (`projects/`) y tu lista de pendientes | `data/` dentro del motor |
+| `POLAR_DIST_DIR` | Carpeta donde quedan las apps exportadas | `dist/` dentro del motor |
+
+Para actualizar el motor: `git -C engine pull` y `npm --prefix engine install`.
+
 ## Generar arte con IA (opcional)
 
 El motor funciona completo sin IA. Si quieres generar imágenes desde el editor:

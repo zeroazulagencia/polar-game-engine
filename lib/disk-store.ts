@@ -14,7 +14,8 @@ import path from "node:path"
  * In the JSON a data URL is replaced by "file:assets/<hash>.<ext>" and inlined back on read,
  * so the app keeps seeing exactly the project it saved.
  */
-const DATA_DIR = path.join(process.cwd(), "data")
+// POLAR_DATA_DIR keeps a game in its own repo, with the engine as a dependency (see README).
+const DATA_DIR = process.env.POLAR_DATA_DIR ? path.resolve(process.env.POLAR_DATA_DIR) : path.join(process.cwd(), "data")
 const PROJECTS_DIR = path.join(DATA_DIR, "projects")
 const INDEX_FILE = path.join(PROJECTS_DIR, "index.json")
 const TRASH_DIR = path.join(DATA_DIR, ".trash")

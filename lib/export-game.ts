@@ -114,7 +114,7 @@ export type PackageTarget = "windows" | "mac" | "linux" | "android"
 
 /**
  * The game as an app: the same HTML, packaged on this machine by the editor's server
- * (app/api/package → scripts/package-game.mjs). Returns the files it made, relative to the repo.
+ * (app/api/package → scripts/package-game.mjs). Returns the paths of the files it made.
  */
 export async function packageGame(project: GameProject, target: PackageTarget) {
   const { html } = await buildStandaloneHtml(project)
