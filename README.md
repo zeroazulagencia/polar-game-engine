@@ -116,6 +116,7 @@ Además de editar a mano, puedes generar contenido con scripts y cargarlo desde 
 | `player/` | Punto de entrada del reproductor que va dentro del HTML exportado |
 | `scripts/package-game.mjs` | Empaqueta el HTML exportado para Windows, Mac, Linux y Android |
 | `data/projects/` | Tus proyectos (y la demo) |
+| `site/` | La página del motor, publicada en [cristianparada.com/games/polar](https://cristianparada.com/games/polar/) |
 
 Comandos: `npm run dev` (editor en el puerto 4600), `npm run build` (compilación de producción) y `npm run package` (empaquetar un juego exportado, ver arriba).
 
@@ -123,4 +124,4 @@ Comandos: `npm run dev` (editor en el puerto 4600), `npm run build` (compilació
 
 El código está bajo la licencia [MIT](LICENSE): úsalo, modifícalo y publica tus juegos, también comerciales.
 
-El arte, la música y los textos de la demo (*La Muerte ha muerto*, en `data/projects/demo-la-muerte-ha-muerto/` y `docs/`) **no** son parte de esa licencia: son de Zero Azul y solo se incluyen para que pruebes el motor. Ver [ASSETS-LICENSE.md](ASSETS-LICENSE.md).
+El arte, la música y los textos de la demo (*La Muerte ha muerto*, en `data/projects/demo-la-muerte-ha-muerto/`, `docs/` y `site/img/`) **no** son parte de esa licencia: son de Zero Azul y solo se incluyen para que pruebes el motor. Ver [ASSETS-LICENSE.md](ASSETS-LICENSE.md).

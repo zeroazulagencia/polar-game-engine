@@ -4,6 +4,7 @@ La demo *La Muerte ha muerto* (personajes, arte, animaciones, música, efectos d
 
 - `data/projects/demo-la-muerte-ha-muerto/`
 - `docs/`
+- `site/img/` (capturas del editor con el juego, usadas en la página del motor)
 
 Puedes usarla para probar el motor, estudiar cómo está hecha y mostrarla junto al motor. No puedes reutilizar sus personajes, arte, música ni textos en tus propios juegos ni en otros productos.
 

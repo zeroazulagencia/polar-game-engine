@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polar — motor de aventuras gráficas point & click, gratis y de código abierto</title>
+<meta name="description" content="Haz tu propia aventura gráfica point & click sin escribir código: escenas, diálogos con ramas, inventario, cinemáticas y un verificador que juega por ti. Exporta a web, Windows, Mac, Linux y Android. Gratis y de código abierto.">
+<meta property="og:title" content="Polar — motor de aventuras gráficas point & click">
+<meta property="og:description" content="Haz tu aventura gráfica sin escribir código y publícala en web, Windows, Mac, Linux y Android. Gratis y de código abierto.">
+<meta property="og:image" content="https://cristianparada.com/games/polar/img/editor.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b14;
+    --bg2: #0c1220;
+    --card: #0f1728;
+    --line: #1c2740;
+    --ink: #e7eefb;
+    --dim: #8d9bb7;
+    --ice: #7dd3fc;
+    --ice-hi: #bae6fd;
+    --ice-deep: #0ea5e9;
+    --warm: #fbbf77;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { width: min(1160px, 100% - 32px); margin: 0 auto; }
+  h1, h2, h3 { font-family: 'Space Grotesk', Inter, sans-serif; letter-spacing: -0.02em; line-height: 1.1; margin: 0; }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ice); }
+
+  /* Top bar */
+  .top { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); background: rgba(7, 11, 20, 0.72); border-bottom: 1px solid rgba(28, 39, 64, 0.6); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; text-decoration: none; }
+  .brand svg { width: 26px; height: 26px; }
+  .top nav { display: flex; gap: 22px; align-items: center; font-size: 15px; color: var(--dim); }
+  .top nav a { text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+  .top nav .gh { color: var(--ink); border: 1px solid var(--line); padding: 6px 12px; border-radius: 8px; display: inline-flex; gap: 8px; align-items: center; }
+  .top nav .gh:hover { border-color: var(--ice); }
+  @media (max-width: 720px) { .top nav .hide-sm { display: none; } }
+
+  /* Hero */
+  .hero { position: relative; padding: 84px 0 40px; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: -20% -10% auto; height: 760px; background: radial-gradient(ellipse at 50% 0%, rgba(14, 165, 233, 0.28), transparent 62%), radial-gradient(ellipse at 85% 30%, rgba(125, 211, 252, 0.12), transparent 50%); pointer-events: none; }
+  .hero .wrap { position: relative; text-align: center; }
+  .hero h1 { font-size: clamp(40px, 7vw, 82px); font-weight: 700; margin: 18px auto 18px; max-width: 15ch; }
+  .hero h1 em { font-style: normal; background: linear-gradient(120deg, var(--ice-hi), var(--ice-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { font-size: clamp(18px, 2.1vw, 21px); color: #b8c4da; max-width: 60ch; margin: 0 auto 32px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 10px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--line); background: var(--card); transition: transform .15s, border-color .15s, background .15s; }
+  .btn:hover { transform: translateY(-1px); border-color: var(--ice); }
+  .btn.primary { background: var(--ice); color: #04121f; border-color: var(--ice); box-shadow: 0 8px 40px rgba(125, 211, 252, 0.25); }
+  .btn.primary:hover { background: var(--ice-hi); }
+  .btn svg { width: 18px; height: 18px; }
+  .meta { margin-top: 18px; font-size: 14px; color: var(--dim); }
+
+  /* Window frame for screenshots */
+  .window { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg2); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(125, 211, 252, 0.04); }
+  .window .bar { height: 30px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #0a101d; }
+  .window .bar i { width: 10px; height: 10px; border-radius: 50%; background: #233150; }
+  .window .bar span { margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--dim); }
+  .hero .window { margin: 56px auto 0; max-width: 1100px; }
+
+  /* Sections */
+  section { padding: 96px 0; }
+  .sec-head { max-width: 720px; margin-bottom: 48px; }
+  .sec-head h2 { font-size: clamp(30px, 4vw, 46px); margin: 12px 0 14px; }
+  .sec-head p { color: #b8c4da; font-size: 18px; margin: 0; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .step .n { font-family: 'JetBrains Mono', monospace; color: var(--ice); font-size: 13px; }
+  .step h3 { font-size: 22px; margin: 10px 0 8px; }
+  .step p { color: var(--dim); margin: 0; font-size: 16px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+  .feature { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: center; padding: 40px 0; }
+  .feature.flip { grid-template-columns: 1.15fr 0.85fr; }
+  .feature.flip .text { order: 2; }
+  .feature h3 { font-size: clamp(24px, 3vw, 32px); margin: 10px 0 12px; }
+  .feature p { color: #b8c4da; margin: 0 0 14px; }
+  .feature ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .feature li { color: var(--dim); font-size: 15.5px; padding-left: 22px; position: relative; }
+  .feature li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 10px; height: 2px; background: var(--ice); }
+  @media (max-width: 860px) { .feature, .feature.flip { grid-template-columns: 1fr; gap: 24px; } .feature.flip .text { order: 0; } }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  .grid2 figure { margin: 0; }
+  .grid2 figcaption { margin-top: 12px; color: var(--dim); font-size: 15px; }
+  .grid2 figcaption b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 860px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* Export targets */
+  .targets { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .target { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px 18px; text-align: center; }
+  .target svg { width: 34px; height: 34px; color: var(--ice); margin: 0 auto 12px; display: block; }
+  .target b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 18px; }
+  .target span { display: block; color: var(--dim); font-size: 14px; margin-top: 4px; }
+  @media (max-width: 900px) { .targets { grid-template-columns: repeat(2, 1fr); } .target:last-child { grid-column: 1 / -1; } }
+
+  /* Made with */
+  .made { display: grid; grid-template-columns: 1.2fr 0.8fr; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--card); }
+  .made .pic { min-height: 340px; background: url(img/ripman.jpg) center / cover no-repeat; }
+  .made .txt { padding: 40px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .made h3 { font-size: 32px; }
+  .made p { color: #b8c4da; margin: 0; }
+  @media (max-width: 860px) { .made { grid-template-columns: 1fr; } .made .pic { min-height: 220px; } .made .txt { padding: 28px; } }
+
+  /* Start */
+  .code { position: relative; background: #050811; border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.9; overflow-x: auto; }
+  .code .c { color: #4f5f80; }
+  .code .p { color: var(--ice); user-select: none; }
+  .copy { position: absolute; top: 12px; right: 12px; font: 500 13px Inter, sans-serif; color: var(--dim); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+  .copy:hover { color: var(--ink); border-color: var(--ice); }
+  .start { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .start ol { margin: 0; padding-left: 20px; color: #b8c4da; display: grid; gap: 10px; }
+  .start ol b { color: var(--ink); }
+  @media (max-width: 860px) { .start { grid-template-columns: 1fr; } }
+
+  .open { text-align: center; padding: 110px 0 120px; position: relative; overflow: hidden; }
+  .open::before { content: ''; position: absolute; inset: auto -10% -40%; height: 600px; background: radial-gradient(ellipse at 50% 100%, rgba(14, 165, 233, 0.22), transparent 60%); pointer-events: none; }
+  .open .wrap { position: relative; }
+  .open h2 { font-size: clamp(32px, 5vw, 56px); margin: 14px auto 16px; max-width: 18ch; }
+  .open p { color: #b8c4da; max-width: 56ch; margin: 0 auto 30px; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; color: var(--dim); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3 L19 13 L29 16 L19 19 L16 29 L13 19 L3 16 L13 13 Z" fill="#7dd3fc"/><circle cx="16" cy="16" r="2.4" fill="#070b14"/></svg>
+      Polar
+    </a>
+    <nav>
+      <a class="hide-sm" href="#que-hace">Qué hace</a>
+      <a class="hide-sm" href="#publicar">Publicar</a>
+      <a class="hide-sm" href="#empezar">Empezar</a>
+      <a class="gh" href="https://github.com/zeroazulagencia/polar-game-engine">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Motor de aventuras gráficas · gratis y de código abierto</div>
+    <h1>Haz tu aventura <em>point &amp; click</em> sin escribir código</h1>
+    <p class="lead">Polar es un editor completo para juegos como Monkey Island o Day of the Tentacle: dibujas las escenas, escribes los diálogos, armas los acertijos y lo publicas en la web, Windows, Mac, Linux o Android.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://github.com/zeroazulagencia/polar-game-engine">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        Usarlo desde GitHub
+      </a>
+      <a class="btn" href="/games/ripman/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        Jugar un juego hecho con Polar
+      </a>
+    </div>
+    <div class="meta">Licencia MIT · funciona en tu computador · en español</div>
+    <div class="window">
+      <div class="bar"><i></i><i></i><i></i><span>Editor de escenas</span></div>
+      <img src="img/editor.jpg" alt="El editor de escenas de Polar con las zonas interactivas y el camino del personaje dibujados sobre el fondo" width="1600" height="960">
+    </div>
+  </div>
+</section>
+
+<section id="que-hace">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Cómo se hace un juego</div>
+      <h2>Tres pasos, todo en el navegador</h2>
+      <p>Abres el editor en tu computador y lo que haces se guarda como archivos normales, listos para versionar con git.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Diseña las escenas</h3><p>Pones el fondo, dibujas dónde se puede caminar y las zonas con las que se interactúa. El personaje se achica al alejarse y pasa por detrás de los objetos.</p></div>
+      <div class="step"><div class="n">02</div><h3>Escribe la historia</h3><p>Diálogos con opciones, objetos que se recogen y se usan, variables, misiones, cinemáticas y varios finales.</p></div>
+      <div class="step"><div class="n">03</div><h3>Publica</h3><p>Un clic y tienes una página web, una app de escritorio o una app de Android con tu juego adentro.</p></div>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <div class="kicker">Diálogos</div>
+        <h3>Conversaciones que dependen de lo que hizo el jugador</h3>
+        <p>Cada línea puede mostrarse solo si se cumple algo, y cada opción puede dar objetos, cambiar de escena, mostrar una cinemática o terminar el juego.</p>
+        <ul><li>Opciones de respuesta y ramas</li><li>Condiciones por variables y objetos del inventario</li><li>Versiones de cada diálogo para comparar y volver atrás</li></ul>
+      </div>
+      <div class="window"><div class="bar"><i></i><i></i><i></i><span>Diálogos</span></div><img src="img/dialogos.jpg" alt="El editor de diálogos con condiciones y opciones" loading="lazy" width="1600" height="960"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <div class="kicker">Verificador</div>
+        <h3>Un jugador que prueba todas las partidas por ti</h3>
+        <p>El verificador recorre las combinaciones posibles con las mismas reglas del juego y te dice si se puede llegar a cada final, y qué acciones dejan al jugador atascado para siempre.</p>
+        <ul><li>Un camino de ejemplo hasta cada final</li><li>Objetos y variables que nunca se consiguen</li><li>Misiones que nadie puede completar</li></ul>
+      </div>
+      <div class="window"><div class="bar"><i></i><i></i><i></i><span>Verificar el juego</span></div><img src="img/verificar.jpg" alt="El verificador mostrando que se llega a los cuatro finales" loading="lazy" width="1600" height="960"></div>
+    </div>
+
+    <div class="grid2">
+      <figure>
+        <div class="window"><div class="bar"><i></i><i></i><i></i><span>Personaje</span></div><img src="img/personaje.jpg" alt="El editor del personaje con su ciclo de caminar y un accesorio" loading="lazy" width="1600" height="960"></div>
+        <figcaption><b>Personaje animado.</b> Reposo y caminar por dirección, accesorios que se pone según la historia y una herramienta para armar el ciclo de caminar.</figcaption>
+      </figure>
+      <figure>
+        <div class="window"><div class="bar"><i></i><i></i><i></i><span>Título y cinemáticas</span></div><img src="img/cinematicas.jpg" alt="El editor de cinemáticas con diapositivas de imagen y texto" loading="lazy" width="1600" height="960"></div>
+        <figcaption><b>Título, cinemáticas y créditos.</b> Pantalla de título con partida guardada, diapositivas o video para la intro y los finales, y créditos al terminar.</figcaption>
+      </figure>
+      <figure>
+        <div class="window"><div class="bar"><i></i><i></i><i></i><span>Objetivos</span></div><img src="img/objetivos.jpg" alt="El editor de objetivos con sus pasos" loading="lazy" width="1600" height="960"></div>
+        <figcaption><b>Objetivos.</b> Misiones con pasos que se cumplen solos según lo que hace el jugador.</figcaption>
+      </figure>
+      <figure>
+        <div class="window"><div class="bar"><i></i><i></i><i></i><span>Jugar</span></div><img src="img/juego.jpg" alt="Una escena del juego en marcha" loading="lazy" width="1600" height="960"></div>
+        <figcaption><b>Juega mientras lo haces.</b> Prueba el juego dentro del editor en cualquier momento, con música, sonido e inventario.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="publicar" style="background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Publicar</div>
+      <h2>Un juego, cinco formas de jugarlo</h2>
+      <p>Desde el menú <b>Exportar juego</b>. La versión web es un solo archivo HTML con todo adentro; las apps se arman en tu computador, sin servicios externos.</p>
+    </div>
+    <div class="targets">
+      <div class="target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg><b>Web</b><span>Un HTML que se sube a cualquier hosting</span></div>
+      <div class="target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5 10.5 4.5v7H3zM12 4.3 21 3v8.5h-9zM3 12.5h7.5v7L3 18.5zM12 12.5h9V21l-9-1.3z"/></svg><b>Windows</b><span>Un .exe para descomprimir y jugar</span></div>
+      <div class="target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.8ZM14.1 5.8c.6-.8 1.1-1.8 1-2.8-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.7-1 2.7 1 .1 2-.5 2.6-1.3Z"/></svg><b>Mac</b><span>Una app para Apple Silicon e Intel</span></div>
+      <div class="target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m7 9 3 2.5L7 14M12.5 14H17"/></svg><b>Linux</b><span>Un ejecutable listo para usar</span></div>
+      <div class="target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><b>Android</b><span>Un APK o el proyecto de Android Studio</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Hecho con Polar</div>
+      <h2>Juégalo antes de usarlo</h2>
+    </div>
+    <div class="made">
+      <div class="pic" role="img" aria-label="RIPMAN, la Muerte, frente al servidor central de MORTIS"></div>
+      <div class="txt">
+        <div class="kicker">Comedia · aventura gráfica</div>
+        <h3>RIPMAN — La Muerte ha muerto</h3>
+        <p>La Muerte es despedida y reemplazada por MORTIS, una IA corporativa que convirtió morir en un producto con planes de suscripción. Quince escenas, cuatro finales y todo hecho en Polar.</p>
+        <div><a class="btn primary" href="/games/ripman/"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>Jugar en el navegador</a></div>
+        <p style="font-size: 14px; color: var(--dim);">La primera escena viene como demo dentro del motor, para que veas cómo está hecha.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="empezar" style="border-top: 1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Empezar</div>
+      <h2>Corre en tu computador en un minuto</h2>
+      <p>Necesitas <a href="https://nodejs.org">Node.js</a> 20.9 o más nuevo.</p>
+    </div>
+    <div class="start">
+      <div class="code" id="cmd"><button class="copy" type="button" data-copy="git clone https://github.com/zeroazulagencia/polar-game-engine.git&#10;cd polar-game-engine&#10;npm install&#10;npm run dev">Copiar</button><span class="p">$ </span>git clone https://github.com/zeroazulagencia/polar-game-engine.git<br><span class="p">$ </span>cd polar-game-engine<br><span class="p">$ </span>npm install<br><span class="p">$ </span>npm run dev<br><span class="c"># abre http://localhost:4600</span></div>
+      <ol>
+        <li>Se abre la <b>demo</b>: RIPMAN tiene que escapar de su celda. Entra a <b>Jugar</b> para probarla.</li>
+        <li>Mira cómo está hecha en <b>Editor de escenas</b>, <b>Diálogos</b> y <b>Título y cinemáticas</b>.</li>
+        <li>Crea tu juego desde el menú del proyecto → <b>Nuevo proyecto</b>.</li>
+        <li>Cuando esté listo, <b>Exportar juego</b>.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="open">
+  <div class="wrap">
+    <div class="kicker">Código abierto · MIT</div>
+    <h2>Tuyo para usar, cambiar y publicar</h2>
+    <p>Haz los juegos que quieras con Polar, también para vender. Si lo mejoras, los cambios son bienvenidos en GitHub.</p>
+    <div class="ctas">
+      <a class="btn primary" href="https://github.com/zeroazulagencia/polar-game-engine">Ver el código en GitHub</a>
+      <a class="btn" href="https://github.com/zeroazulagencia/polar-game-engine#readme">Leer la documentación</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Polar Game Engine · hecho por <a href="https://cristianparada.com">Cristian Parada</a> en Zero Azul</span>
+    <span><a href="https://github.com/zeroazulagencia/polar-game-engine">GitHub</a> · <a href="/games/ripman/">RIPMAN</a> · <a href="/games/coro-del-horror/">El Coro del Horror</a></span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copiado'; } catch { b.textContent = 'Selecciona y copia'; }
+    setTimeout(() => (b.textContent = 'Copiar'), 1800);
+  }));
+</script>
+</body>
+</html>
